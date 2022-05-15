@@ -3,7 +3,7 @@
 class Item {
 
     public $name;
-    public $description;
+    public $description = "This is a default description!";
 
 }
 
