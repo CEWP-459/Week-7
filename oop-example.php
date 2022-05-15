@@ -4,12 +4,11 @@ ini_set('display_errors', 1);
 
 require './item.php';
 
-$item1 = new Item("Example", "Some Description!");
+define('MAXIMUM', 100);
 
-var_dump($item1);
+define('COLOUR', 'red');
 
-$item2 = new Item("Example", "Some Description!");
+echo MAXIMUM . "<br>";
+echo COLOUR . "<br>";
 
-var_dump($item2);
-
-Item::showCount();
+echo Item::MAX_LENGTH;
