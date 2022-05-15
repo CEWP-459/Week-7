@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 
 require './item.php';
 
-$item1 = new Item("Item #1", "First Item!");
-var_dump($item1 -> name);
-var_dump($item1 -> sayHello()); 
+$my_item = new Item();
+
+$my_item->setName("Example");
+$my_item->setDescription("The example description");
+
+echo $my_item->getName();

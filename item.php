@@ -1,22 +1,28 @@
-<?php 
+<?php
 
-class Item {
-
+class Item
+{
     private $name;
-    public $description = "This is a default description!";
 
-    function __construct ($name, $description) {
-       $this -> name = $name;
-       $this -> description = $description;
+    private $description;
+
+    public function getName()
+    {
+        return $this->name;
     }
 
-    private function sayHello () {
-        return "Hello";
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
-    function getName () {
-        return $this -> name;
+    public function getDescription()
+    {
+        return $this->description;
     }
 
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 }
-
