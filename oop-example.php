@@ -1,10 +1,6 @@
 <?php 
 
-class Item {
-
-
-}
-
+require './item.php';
 
 $item1 = new Item();
 
