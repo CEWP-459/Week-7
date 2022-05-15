@@ -2,13 +2,13 @@
 
 ini_set('display_errors', 1); 
 
-require './item.php';
+require './Item.php';
+require './Book.php';
 
-define('MAXIMUM', 100);
+$item1 = new Item();
+$item1 -> description = "Some Description of Item 1"; 
+echo $item1 -> getListingDescription() . "<br>";
 
-define('COLOUR', 'red');
-
-echo MAXIMUM . "<br>";
-echo COLOUR . "<br>";
-
-echo Item::MAX_LENGTH;
+$book1 = new Book();
+$book1 -> description = "Some Description of Book 1"; 
+echo $book1 -> getListingDescription() . "<br>";
