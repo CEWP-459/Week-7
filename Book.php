@@ -1,16 +1,6 @@
 <?php
 
-class Book
+class Book extends Item
 {
-    public $name;
-
-    public $description;
-
     public $author;
-
-    public function getListingDescription()
-    {
-        return $this->description;
-    }
-
 }
