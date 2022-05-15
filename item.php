@@ -15,4 +15,9 @@ class Item
         static::$count++;
     }
 
+    public static function showCount () {
+        echo static::$count;
+    }
+
+
 }
