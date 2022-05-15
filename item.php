@@ -2,6 +2,8 @@
 
 class Item {
 
+    public $name;
+    public $description;
 
 }
 
