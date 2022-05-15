@@ -6,6 +6,8 @@ class Item
 
     public $description;
 
+    protected $code = 1234;
+
     public function getListingDescription()
     {
         return "Description: " . $this->description;
