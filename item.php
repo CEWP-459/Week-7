@@ -8,7 +8,7 @@ class Item
 
     public function getListingDescription()
     {
-        return $this->description;
+        return "Description: " . $this->description;
     }
 
 }

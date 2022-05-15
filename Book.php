@@ -6,7 +6,7 @@ class Book extends Item
 
     public function getListingDescription()
     {
-        return $this->description . " by " . $this->author;
+        return parent::getListingDescription() . " by " . $this->author;
     }
 
 }
