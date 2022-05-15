@@ -6,23 +6,13 @@ class Item
 
     private $description;
 
-    public function getName()
-    {
-        return $this->name;
-    }
+    public static $count = 0;
 
-    public function setName($name)
-    {
+    public function __construct($name, $description) {
         $this->name = $name;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function setDescription($description)
-    {
         $this->description = $description;
+
+        static::$count++;
     }
+
 }

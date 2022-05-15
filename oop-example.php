@@ -4,9 +4,16 @@ ini_set('display_errors', 1);
 
 require './item.php';
 
-$my_item = new Item();
+var_dump(Item::$count);
 
-$my_item->setName("Example");
-$my_item->setDescription("The example description");
+$item1 = new Item("Example", "Some Description!");
 
-echo $my_item->getName();
+var_dump($item1);
+
+var_dump(Item::$count);
+
+$item2 = new Item("Example", "Some Description!");
+
+var_dump($item2);
+
+var_dump(Item::$count);
