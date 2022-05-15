@@ -2,7 +2,7 @@
 
 class Item {
 
-    public $name;
+    private $name;
     public $description = "This is a default description!";
 
     function __construct ($name, $description) {
@@ -10,7 +10,7 @@ class Item {
        $this -> description = $description;
     }
 
-    function sayHello () {
+    private function sayHello () {
         return "Hello";
     }
 
