@@ -81,10 +81,22 @@ class Article
         } else {
 
             return false;
-            
+
         }
 
 
     }
+
+    public function delete ($connection) {
+
+        $sql = "DELETE FROM article WHERE id = :id";
+
+        $stmt = $connection -> prepare($sql);
+
+        $stmt -> bindValue(':id', $this -> id, PDO::PARAM_INT);
+
+        return $stmt -> execute();
+
+    } 
 
 }
