@@ -3,17 +3,20 @@
     session_start();
 
     ini_set('display_errors', 1); 
-    require 'includes/database-connection.php'; 
+    require 'classes/Database.php'; 
     require 'includes/auth.php'; 
 
-    $connection = getDB();
+    $db = new Database();
+    $connection = $db -> getConn();
+
     $sql = "SELECT * FROM article"; 
+
     try {
-        $result = mysqli_query($connection, $sql); 
+        $result = $connection -> query($sql); 
         if ($result) {
-            $articles = mysqli_fetch_all($result, MYSQLI_ASSOC); 
+            $articles = $result -> fetchAll(PDO::FETCH_ASSOC); 
         } else {
-            echo "DB did not return a value: " . mysqli_error($connection); 
+            echo "DB did not return a value: " . var_dump($connection -> errorInfo()); 
         }
     } catch (Exception $e) {
         echo "ERROR: " . $e; 
