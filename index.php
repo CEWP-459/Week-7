@@ -18,8 +18,8 @@
         } else {
             echo "DB did not return a value: " . var_dump($connection -> errorInfo()); 
         }
-    } catch (Exception $e) {
-        echo "ERROR: " . $e; 
+    } catch (PDOException $e) {
+        echo "ERROR is: " . $e; 
     }
 
 ?>

@@ -11,6 +11,12 @@ class Database
 
         $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8';
 
-        return new PDO($dsn, $db_username, $db_password);
+        try {
+            return new PDO($dsn, $db_username, $db_password);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit;
+        }
+
     }
 }
