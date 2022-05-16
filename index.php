@@ -3,24 +3,16 @@
     session_start();
 
     ini_set('display_errors', 1); 
+
     require 'classes/Database.php'; 
+    require 'classes/Article.php'; 
+
     require 'includes/auth.php'; 
 
     $db = new Database();
     $connection = $db -> getConn();
 
-    $sql = "SELECT * FROM article"; 
-
-    try {
-        $result = $connection -> query($sql); 
-        if ($result) {
-            $articles = $result -> fetchAll(PDO::FETCH_ASSOC); 
-        } else {
-            echo "DB did not return a value: " . var_dump($connection -> errorInfo()); 
-        }
-    } catch (PDOException $e) {
-        echo "ERROR is: " . $e; 
-    }
+    $articles = Article::getAll($connection);
 
 ?>
 
