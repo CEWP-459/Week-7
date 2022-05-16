@@ -1,10 +1,13 @@
 <?php
 
     ini_set('display_errors', 1); 
-    require 'includes/database-connection.php'; 
+
+    require 'classes/Database.php'; 
     require 'includes/article.php'; 
     
-    $connection = getDB();
+    $db = new Database();
+    $connection = $db -> getConn();
+
     if (isset($_GET['id'])) {
         $article = getArticleFromDB($connection, $_GET['id']);
     } else {
@@ -16,7 +19,7 @@
 <?php require 'includes/header.php'; ?>
 <body>
     <h1>Blog</h1>
-    <?php if ($article === null) : ?>
+    <?php if (!$article) : ?>
         <h2> No articles found! </h2>
     <?php else: ?>    
         <ol>
