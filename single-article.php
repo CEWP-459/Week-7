@@ -3,13 +3,13 @@
     ini_set('display_errors', 1); 
 
     require 'classes/Database.php'; 
-    require 'includes/article.php'; 
+    require 'classes/Article.php'; 
     
     $db = new Database();
     $connection = $db -> getConn();
 
     if (isset($_GET['id'])) {
-        $article = getArticleFromDB($connection, $_GET['id']);
+        $article = Article::getById($connection, $_GET['id']);
     } else {
         $article = null;
     }
