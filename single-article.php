@@ -25,13 +25,13 @@
         <ol>
             <li>
                 <h3>Title:</h3>
-                <?= htmlspecialchars($article['title']); ?>
+                <?= htmlspecialchars($article -> title); ?>
                 <h3>Content:</h3>
-                <?= htmlspecialchars($article['content']); ?>
+                <?= htmlspecialchars($article -> content); ?>
             </li>
         </ol>
-        <a href="./edit-article.php?id=<?= $article['id'] ?>">Edit Article</a>
-        <a href="./delete-article.php?id=<?= $article['id'] ?>">Delete Article</a>  
+        <a href="./edit-article.php?id=<?= $article -> id ?>">Edit Article</a>
+        <a href="./delete-article.php?id=<?= $article -> id ?>">Delete Article</a>  
     <?php endif; ?>    
 </body>
 
