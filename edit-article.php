@@ -4,7 +4,6 @@
 
     require 'classes/Database.php'; 
     require 'classes/Article.php'; 
-    require 'includes/article.php'; 
     
     $db = new Database();
     $connection = $db -> getConn();
@@ -30,12 +29,8 @@
         $article -> content = $_POST['content'];
         $article -> published_at = $_POST['published_at'];
 
-        $errors = validateArticle($article -> title, $article -> content, $article -> published_at);
-
-        if (empty($errors)) {
-            if ($article -> update($connection)) {
-                header("Location: ./single-article.php?id={$article->id}");
-            }
+        if ($article -> update($connection)) {
+            header("Location: ./single-article.php?id={$article->id}");
         }
     }
     

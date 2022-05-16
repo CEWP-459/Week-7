@@ -6,6 +6,34 @@ class Article
     public $title;
     public $content;
     public $published_at;
+    public $errors = [];
+
+    protected function validate () {
+
+        if ($this -> title == '') {
+            $this -> errors[] = 'Title is required';
+        }
+        if ($this -> content == '') {
+            $this -> errors[] = 'Content is required';
+        }
+
+        if ($this -> published_at != '') {
+            $date_time = date_create_from_format('Y-m-d H:i:s', $this -> published_at);
+
+            if ($date_time === false) {
+                $this -> errors[] = 'Invalid date and time';
+            } else {
+                $date_errors = date_get_last_errors();
+
+                if ($date_errors['warning_count'] > 0) {
+                    $this -> errors[] = 'Invalid date and time';
+                }
+            }
+        }
+
+        return empty($this -> errors);
+    
+    }
 
     public static function getAll ($connection) {
         $sql = "SELECT * FROM article"; 
@@ -28,25 +56,34 @@ class Article
 
     public function update ($connection) {
 
-        $sql = "UPDATE  article 
-                SET     title = :title, 
-                        content = :content, 
-                        published_at = :published_at
-                WHERE   id = :id";
+        if ($this -> validate()) {
 
-        $stmt = $connection -> prepare($sql);
+            $sql = "UPDATE  article 
+                    SET     title = :title, 
+                            content = :content, 
+                            published_at = :published_at
+                    WHERE   id = :id";
 
-        $stmt -> bindValue(':id', $this -> id, PDO::PARAM_INT);
-        $stmt -> bindValue(':title', $this -> title, PDO::PARAM_STR);
-        $stmt -> bindValue(':content', $this -> content, PDO::PARAM_STR);
+            $stmt = $connection -> prepare($sql);
 
-        if ($this -> published_at == '') {
-            $stmt -> bindValue(':published_at', null, PDO::PARAM_NULL);
+            $stmt -> bindValue(':id', $this -> id, PDO::PARAM_INT);
+            $stmt -> bindValue(':title', $this -> title, PDO::PARAM_STR);
+            $stmt -> bindValue(':content', $this -> content, PDO::PARAM_STR);
+
+            if ($this -> published_at == '') {
+                $stmt -> bindValue(':published_at', null, PDO::PARAM_NULL);
+            } else {
+                $stmt -> bindValue(':published_at', $this -> published_at, PDO::PARAM_STR);
+            }
+
+            return $stmt -> execute();
+       
         } else {
-            $stmt -> bindValue(':published_at', $this -> published_at, PDO::PARAM_STR);
+
+            return false;
+            
         }
 
-        return $stmt -> execute();
 
     }
 
